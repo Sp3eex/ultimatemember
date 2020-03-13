@@ -514,13 +514,11 @@ if ( ! class_exists( 'um\core\Roles_Capabilities' ) ) {
 		 */
 		function role_data( $roleID ) {
 			if ( strpos( $roleID, 'um_' ) === 0 ) {
-				$role_data = get_option( "um_role_{$roleID}_meta" );
+				$roleID_ = substr( $roleID, 3 );
+				$role_data = get_option( "um_role_{$roleID_}_meta" );
+			}
 
-				if ( ! $role_data ) {
-					$roleID = substr( $roleID, 3 );
-					$role_data = get_option( "um_role_{$roleID}_meta" );
-				}
-			} else {
+			if ( empty( $role_data ) ) {
 				$role_data = get_option( "um_role_{$roleID}_meta" );
 			}
 
